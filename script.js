@@ -21,13 +21,61 @@ function initTabNav() {
 
 initTabNav();
 
-const accordionList = document.querySelectorAll('.js-accordion dt');
+/* Faq Accordion */
+function initAccordion() {
+  const accordionList = document.querySelectorAll('.js-accordion dt');
 
-function activeAccordion() {
-  this.classList.toggle('ativo');
-  this.nextElementSibling.classList.toggle('ativo');
+  function activeAccordion() {
+    this.classList.toggle('ativo');
+    this.nextElementSibling.classList.toggle('ativo');
+  }
+
+  accordionList.forEach((accordionItem) => {
+    accordionItem.addEventListener('click', activeAccordion);
+  });
+}
+initAccordion();
+
+/* scroll smooth */
+function initScrollSmooth() {
+  const linksInternos = document.querySelectorAll('.js-menu a[href^="#"]');
+
+  function scrollToSection(event) {
+    event.preventDefault();
+    const href = this.getAttribute('href');
+
+    const elem = document.querySelector(href);
+
+    elem.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }
+
+  linksInternos.forEach((link) => {
+    link.addEventListener('click', scrollToSection);
+  });
 }
 
-accordionList.forEach((accordionItem) => {
-  accordionItem.addEventListener('click', activeAccordion);
-});
+initScrollSmooth();
+
+/* Animação ao scroll */
+function initAnimacaoScroll() {
+  const sections = document.querySelectorAll('.js-scroll');
+  const windowMetade = 0.5 * window.innerHeight;
+
+  function animaScroll() {
+    sections.forEach((section) => {
+      const sectionTop = section.getBoundingClientRect().top - windowMetade;
+
+      if (sectionTop < 0) {
+        section.classList.add('ativo');
+      }
+    });
+  }
+  animaScroll();
+
+  window.addEventListener('scroll', animaScroll);
+}
+
+initAnimacaoScroll();
