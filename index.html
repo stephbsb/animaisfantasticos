@@ -10,6 +10,12 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
+    <script>
+      /* Para ativar/desativar certos efeitos quando o javascript for desabilitado - adiciona classe js a tag Html */
+      if (window.navigator.javaEnabled) {
+        document.documentElement.className += ' js';
+      }
+    </script>
   </head>
   <body>
     <nav class="menu">
@@ -22,7 +28,7 @@
     </nav>
     <section class="grid-section animais" id="animais">
       <h1 class="titulo">Animais Fantásticos</h1>
-      <ul class="animais-lista">
+      <ul class="animais-lista js-tabmenu">
         <li><img src="img/imagem1.jpg" alt="" /></li>
         <li><img src="img/imagem2.jpg" alt="" /></li>
         <li><img src="img/imagem3.jpg" alt="" /></li>
@@ -30,8 +36,8 @@
         <li><img src="img/imagem5.jpg" alt="" /></li>
         <li><img src="img/imagem6.jpg" alt="" /></li>
       </ul>
-      <div class="descricao">
-        <section>
+      <div class="descricao js-tabcontent">
+        <section class="ativo">
           <h2>
             Raposa
           </h2>
